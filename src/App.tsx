@@ -1,15 +1,24 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import styled from 'styled-components';
 import Content from './layout/Content';
+import layoutConstants from './layout/layout-constants';
+import Navbar from './layout/Navbar';
 import Routes from './Routes';
+import Footer from './layout/Footer';
+
+const StyledApp = styled.div`
+  margin-top: ${layoutConstants.NAVBAR_HEIGHT}px;
+`;
 
 const App: React.FC = () => {
   return (
-    <Content>
-      SHOPPING CART
-      <Button size="massive" icon="cart" />
-      <Routes />
-    </Content>
+    <StyledApp>
+      <Navbar />
+      <Content>
+        <Routes />
+      </Content>
+      <Footer />
+    </StyledApp>
   );
 };
 
