@@ -1,27 +1,19 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import CartContext from "./pages/Cart/context/CartContext";
-import Content from "./layout/Content";
-import Footer from "./layout/Footer";
-import layoutConstants from "./layout/layout-constants";
-import Navbar from "./layout/Navbar";
-import Routes from "./Routes";
-import Product from "./pages/Products/Product";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Content from './layout/Content';
+import Footer from './layout/Footer';
+import layoutConstants from './layout/layout-constants';
+import Navbar from './layout/Navbar';
+import CartContext from './pages/Cart/context/CartContext';
+import Product from './pages/Products/Product';
+import Routes from './Routes';
 
 const StyledApp = styled.div`
   margin-top: ${layoutConstants.NAVBAR_HEIGHT}px;
 `;
 
 const initialValues = {
-  products: [
-    { id: 1, name: "PRODUTO 1" },
-    { id: 2, name: "PRODUTO 2" },
-    { id: 3, name: "PRODUTO 3" },
-    { id: 4, name: "PRODUTO 4" },
-    { id: 5, name: "PRODUTO 5" },
-    { id: 6, name: "PRODUTO 6 " },
-    { id: 7, name: "PRODUTO 7" }
-  ]
+  products: [],
 };
 
 const App: React.FC = () => {
@@ -30,14 +22,18 @@ const App: React.FC = () => {
   function clearCart() {
     setProducts([]);
   }
-  function removeItem(id?: number): void {
+  function removeItem(id?: string): void {
     const newProducts = products.filter(product => product.id !== id);
+    setProducts(newProducts);
+  }
+  function addItem(product: Product): void {
+    const newProducts = products.filter(p => product.id !== p.id).concat(product);
     setProducts(newProducts);
   }
 
   return (
     <StyledApp>
-      <CartContext.Provider value={{ clearCart, products, removeItem }}>
+      <CartContext.Provider value={{ clearCart, products, removeItem, addItem }}>
         <Navbar />
         <Content>
           <Routes />

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { List, Button } from 'semantic-ui-react';
+import { List, Button, Image } from 'semantic-ui-react';
 import CartContext from './context/CartContext';
 import Product from '../Products/Product';
 
@@ -17,6 +17,7 @@ const Cart = () => {
           }}
         />
       </List.Content>
+      <Image size="medium" src={product.imageUrl} />
       <List.Content>{product.name}</List.Content>
     </List.Item>
   ));

@@ -14,9 +14,7 @@ const Navbar: React.FC = () => {
       </Menu.Item>
 
       <Menu.Item position="right">
-        <PopoverCart>
-          <Button icon="cart" color="orange" />
-        </PopoverCart>
+        <PopoverCart />
       </Menu.Item>
       <Menu.Item />
     </Menu>
