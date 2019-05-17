@@ -49,6 +49,7 @@
     "import/no-named-as-default": "off",
     "import/default": "off",
     "import/namespace": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "class-methods-use-this": "off"
   }
 }
