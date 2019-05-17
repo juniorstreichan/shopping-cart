@@ -48,6 +48,7 @@
     "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
     "import/default": "off",
-    "import/namespace": "off"
+    "import/namespace": "off",
+    "react/no-array-index-key": "off"
   }
 }
