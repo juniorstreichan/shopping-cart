@@ -1,5 +1,5 @@
 import React from 'react';
-import CartContextManager from '../types/interfaces/CartContextManager';
+import CartContextManager from './context/CartContextManager';
 
 const CartContext = React.createContext<CartContextManager>({
   clearCart: () => null,

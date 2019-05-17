@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { List, Button } from 'semantic-ui-react';
-import CartContext from '../context/CartContext';
-import Product from '../types/interfaces/Product';
+import CartContext from './context/CartContext';
+import Product from '../Products/Product';
 
 const Cart = () => {
   const { products, removeItem } = useContext(CartContext);

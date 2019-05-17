@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button } from 'semantic-ui-react';
-import CartContext from '../context/CartContext';
+import CartContext from '../Cart/context/CartContext';
 
 const Home: React.FC = () => {
   const { clearCart } = useContext(CartContext);

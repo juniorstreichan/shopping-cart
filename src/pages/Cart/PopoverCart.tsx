@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Header, Icon, List, Popup } from 'semantic-ui-react';
-import CartContextManager from '../types/interfaces/CartContextManager';
-import Product from '../types/interfaces/Product';
-import CartContext from '../context/CartContext';
+import CartContextManager from './context/CartContextManager';
+import Product from '../Products/Product';
+import CartContext from './context/CartContext';
 
 const PopoverCart: React.FC = ({ children }) => {
   const { products, removeItem } = useContext<CartContextManager>(CartContext);
