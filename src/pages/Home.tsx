@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'semantic-ui-react';
-import { CartContext } from '../App';
+import CartContext from '../context/CartContext';
 
 const Home: React.FC = () => {
+  const { clearCart } = useContext(CartContext);
   return (
     <div>
       Home
       <br />
-      <CartContext.Consumer>
-        {({ clearCart }) => {
-          return <Button onClick={() => clearCart()} size="massive" icon="cart" />;
-        }}
-      </CartContext.Consumer>
+      <Button onClick={() => clearCart()} size="massive">
+        Limpar carrinho
+      </Button>
     </div>
   );
 };
