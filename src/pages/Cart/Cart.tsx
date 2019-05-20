@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { List, Button, Image } from 'semantic-ui-react';
+import React, { useContext, Fragment } from 'react';
+import { List, Button, Image, Popup, Divider } from 'semantic-ui-react';
 import CartContext from './context/CartContext';
 import Product from '../Products/Product';
 
@@ -9,12 +9,26 @@ const Cart = () => {
   const ListProducts = products.map((product: Product, index: number) => (
     <List.Item key={`${index}-${index * 2}-${index * 3}`}>
       <List.Content floated="right">
-        <Button
-          icon="trash"
-          color="red"
-          onClick={() => {
-            removeItem(product.id);
-          }}
+        <Popup
+          hideOnScroll
+          position="left center"
+          on="click"
+          content={(
+<Fragment>
+              <b>Tem certeza ?</b> <Divider />
+              <Button
+                fluid
+                size="mini"
+                onClick={() => {
+                  removeItem(product.id);
+                }}
+                color="blue"
+              >
+                Sim
+              </Button>
+            </Fragment>
+)}
+          trigger={<Button icon="trash" color="red" />}
         />
       </List.Content>
       <Image size="medium" src={product.imageUrl} />
