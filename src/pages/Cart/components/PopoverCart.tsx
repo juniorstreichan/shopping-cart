@@ -1,10 +1,11 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Icon, Image, Label, List, Popup, Segment, Divider } from 'semantic-ui-react';
+import { Button, Icon, Image, Label, List, Popup, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
 import Product from '../../Products/Product';
 import CartContext from '../context/CartContext';
 import CartContextManager from '../context/CartContextManager';
+import ButtonRemoveItem from './ButtonRemoveItem';
 
 const PopoverContent = styled.aside`
   max-height: 70vh !important;
@@ -30,8 +31,8 @@ const PopoverCart: React.FC = () => {
     </Button>
   );
 
-  const ListProducts = products.map((product: Product, index: number) => (
-    <List.Item key={`${index}-${index * 2}-${index * 3}`}>
+  const ListProducts = products.map((product: Product) => (
+    <List.Item key={`PopoverCart-${product.id}`}>
       <Image size="tiny" src={product.imageUrl} />
       <br />
       <List.Content floated="right">
@@ -39,21 +40,7 @@ const PopoverCart: React.FC = () => {
           hideOnScroll
           position="left center"
           on="click"
-          content={(
-<Fragment>
-              <b>Tem certeza ?</b> <Divider />
-              <Button
-                fluid
-                size="mini"
-                onClick={() => {
-                  removeItem(product.id);
-                }}
-                color="blue"
-              >
-                Sim
-              </Button>
-            </Fragment>
-)}
+          content={<ButtonRemoveItem onRemove={() => removeItem(product.id)} />}
           trigger={<Button icon="trash" color="red" />}
         />
       </List.Content>
@@ -72,8 +59,7 @@ const PopoverCart: React.FC = () => {
           <small>
             {haveProducts ? (
               <Fragment>
-                Quantidade:
-                {` `}
+                {`Quantidade: `}
                 <b>{products.length}</b>
               </Fragment>
             ) : (

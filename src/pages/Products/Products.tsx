@@ -21,7 +21,7 @@ const Products: React.FC = () => {
         setProducts(response);
         setIsLoadding(false);
       })
-      .catch(err => setIsLoadding(false));
+      .catch(() => setIsLoadding(false));
   }, []);
 
   function closeModal() {

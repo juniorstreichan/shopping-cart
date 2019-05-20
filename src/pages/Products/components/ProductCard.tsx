@@ -7,27 +7,21 @@ const ProductCard: React.FC<{
   onAddtoCart: Function;
   onViewCard: Function;
 }> = ({ product, onAddtoCart, onViewCard }) => {
+  const btnAdd = (
+    <Button onClick={() => onAddtoCart(product)} color="blue">
+      <Icon name="plus" />
+      <Icon name="cart" />
+    </Button>
+  );
+  const btnView = (
+    <Button onClick={() => onViewCard()} color="blue">
+      <Icon name="eye" size="large" />
+    </Button>
+  );
   const bottomGroup = (
     <Button.Group>
-      <Popup
-        trigger={(
-<Button onClick={() => onAddtoCart(product)} color="blue">
-            <Icon name="plus" />
-            <Icon name="cart" />
-          </Button>
-)}
-        content="Adicionar ao carrinho"
-        hideOnScroll
-      />
-      <Popup
-        trigger={(
-<Button onClick={() => onViewCard()} color="blue">
-            <Icon name="eye" size="large" />
-          </Button>
-)}
-        content="Ver mais"
-        hideOnScroll
-      />
+      <Popup trigger={btnAdd} content="Adicionar ao carrinho" hideOnScroll />
+      <Popup trigger={btnView} content="Ver mais" hideOnScroll />
     </Button.Group>
   );
   return (
