@@ -1,7 +1,7 @@
 import React from 'react';
-import { Menu, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
-import PopoverCart from '../pages/Cart/PopoverCart';
+import { Menu } from 'semantic-ui-react';
+import PopoverCart from '../pages/Cart/components/PopoverCart';
 
 const Navbar: React.FC = () => {
   return (
