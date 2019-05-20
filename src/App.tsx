@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import Content from './layout/Content';
 import Footer from './layout/Footer';
@@ -6,34 +6,32 @@ import layoutConstants from './layout/layout-constants';
 import Navbar from './layout/Navbar';
 import CartContext from './pages/Cart/context/CartContext';
 import Product from './pages/Products/Product';
+import cartReducer from './reducers/cartReducer';
+import TYPES from './reducers/types';
 import Routes from './Routes';
 
 const StyledApp = styled.div`
   margin-top: ${layoutConstants.NAVBAR_HEIGHT}px;
 `;
-
 const initialValues = {
   products: [],
 };
 
 const App: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>(initialValues.products);
-
+  const [state, dispatch] = useReducer(cartReducer, initialValues);
   function clearCart() {
-    setProducts([]);
+    dispatch({ type: TYPES.CART_CLEAR });
   }
-  function removeItem(id?: string): void {
-    const newProducts = products.filter(product => product.id !== id);
-    setProducts(newProducts);
+  function removeItem(id: string = '0'): void {
+    dispatch({ type: TYPES.CART_REMOVE, id });
   }
   function addItem(product: Product): void {
-    const newProducts = products.filter(p => product.id !== p.id).concat(product);
-    setProducts(newProducts);
+    dispatch({ type: TYPES.CART_ADD, product });
   }
 
   return (
     <StyledApp>
-      <CartContext.Provider value={{ clearCart, products, removeItem, addItem }}>
+      <CartContext.Provider value={{ clearCart, products: state.products, removeItem, addItem }}>
         <Navbar />
         <Content>
           <Routes />
