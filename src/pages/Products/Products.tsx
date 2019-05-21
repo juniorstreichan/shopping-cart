@@ -1,13 +1,14 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Grid, Header, Segment, Modal, Image, Button, Icon } from 'semantic-ui-react';
+import { RouteComponentProps } from 'react-router-dom';
+import { Button, Grid, Header, Icon, Image, Modal, Segment } from 'semantic-ui-react';
+import CardLoadding from '../../layout/CardLoadding';
 import CartContext from '../Cart/context/CartContext';
 import CartContextManager from '../Cart/context/CartContextManager';
-import Product from './Product';
 import ProductCard from './components/ProductCard';
+import Product from './Product';
 import ProductsService from './ProductsService';
-import CardLoadding from '../../layout/CardLoadding';
 
-const Products: React.FC = () => {
+const Products: React.FC<RouteComponentProps> = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoadding, setIsLoadding] = useState(false);
   const [showModal, setShowModal] = useState(false);

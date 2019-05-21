@@ -1,18 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Link, RouteComponentProps } from 'react-router-dom';
+import { Button, Segment } from 'semantic-ui-react';
 
-const Home: React.FC = () => {
+const Home: React.FC<RouteComponentProps> = () => {
   return (
-    <div>
-      Home
-      <br />
+    <Segment placeholder>
       <Link to="produtos">
         <Button fluid size="massive">
           Ver Produtos
         </Button>
       </Link>
-    </div>
+    </Segment>
   );
 };
 
