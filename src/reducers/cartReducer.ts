@@ -1,5 +1,6 @@
 import Product from '../pages/Products/Product';
 import TYPES from './types';
+import { clearSelect, removeSelect, addSelect } from './selectors/cartSelectors';
 
 interface CartAction {
   type: TYPES;
@@ -14,14 +15,14 @@ interface CartState {
 export default function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case TYPES.CART_CLEAR:
-      return { products: [] };
+      return { products: clearSelect() };
     case TYPES.CART_REMOVE:
       return {
-        products: state.products.filter(product => product.id !== action.id),
+        products: removeSelect(state.products, action.id),
       };
     case TYPES.CART_ADD:
       return {
-        products: action.product ? [...state.products, action.product] : state.products,
+        products: addSelect(state.products, action.product),
       };
     default:
       return state;

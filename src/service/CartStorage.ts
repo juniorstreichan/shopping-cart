@@ -1,11 +1,11 @@
 import Product from '../pages/Products/Product';
 
 class CartStorage {
-  private key = 'persiste:cart';
+  private key = 'persist:cart';
 
   public getProductsCart(): Product[] {
     try {
-      const products = JSON.parse(localStorage.getItem(this.key)) || [];
+      const products = JSON.parse(localStorage.getItem(this.key) || '[]');
       return products;
     } catch (error) {
       console.log(error);

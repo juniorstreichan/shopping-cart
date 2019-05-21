@@ -9,12 +9,13 @@ import Product from './pages/Products/Product';
 import cartReducer from './reducers/cartReducer';
 import TYPES from './reducers/types';
 import Routes from './Routes';
+import CartStorage from './service/CartStorage';
 
 const StyledApp = styled.div`
   margin-top: ${layoutConstants.NAVBAR_HEIGHT}px;
 `;
 const initialValues = {
-  products: [],
+  products: CartStorage.getProductsCart(),
 };
 
 const App: React.FC = () => {

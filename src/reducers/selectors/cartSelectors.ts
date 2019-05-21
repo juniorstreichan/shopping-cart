@@ -6,7 +6,15 @@ export function clearSelect(): Product[] {
   return [];
 }
 
-export function removeSelect(products: Product[], id: string): Product[] {
+export function removeSelect(products: Product[], id = ''): Product[] {
   CartStorage.removeProductOfCart(id);
   return products.filter(product => product.id !== id);
+}
+
+export function addSelect(products: Product[], product?: Product): Product[] {
+  if (product) {
+    CartStorage.addProductToCart(product);
+    return [...products, product];
+  }
+  return products;
 }
