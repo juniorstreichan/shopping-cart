@@ -7,9 +7,9 @@ const ListProductsCart: React.FC = () => {
   const { products, removeItem } = useContext(CartContext);
   return (
     <Fragment>
-      {products.map((product: Product) => (
+      {products.map((product: Product, index: number) => (
         <ItemProductCart
-          key={`ListProductsCart-${product.id}`}
+          key={`${index}-ListProductsCart-${product.id}`}
           product={product}
           removeItem={removeItem}
         />

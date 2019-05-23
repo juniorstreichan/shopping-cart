@@ -18,6 +18,11 @@ const PopoverCart: React.FC = () => {
   const { products, removeItem } = useContext<CartContextManager>(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const haveProducts = products.length > 0;
+  const totalCartValue = haveProducts
+    ? products
+        .map(p => p.price || 0)
+        .reduce((accumulator, currentValue) => accumulator + currentValue)
+    : 0;
 
   const trigger = (
     <Button fluid color="orange" onClick={() => setIsOpen(!isOpen)}>
@@ -31,9 +36,18 @@ const PopoverCart: React.FC = () => {
     </Button>
   );
 
-  const ListProducts = products.map((product: Product) => (
-    <List.Item key={`PopoverCart-${product.id}`}>
+  const ListProducts = products.map((product: Product, index: number) => (
+    <List.Item key={`${index}-PopoverCart-${product.id}`}>
       <Image size="tiny" src={product.imageUrl} />
+      <List.Content floated="right">
+        <Label>
+          {product.price &&
+            product.price.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
+        </Label>
+      </List.Content>
       <br />
       <List.Content floated="right">
         <Popup
@@ -41,26 +55,34 @@ const PopoverCart: React.FC = () => {
           position="left center"
           on="click"
           content={<ButtonRemoveItem onRemove={() => removeItem(product.id)} />}
-          trigger={<Button icon="trash" color="red" />}
+          trigger={<Button icon="trash" color="red" size="mini" />}
         />
       </List.Content>
       <List.Content>
-        <span>{product.name}</span>
+        <small>{product.name}</small>
       </List.Content>
     </List.Item>
   ));
 
   return (
-    <Popup basic style={{ width: '300px' }} wide trigger={trigger} on="click" open={isOpen}>
+    <Popup basic style={{ width: '400px' }} wide trigger={trigger} on="click" open={isOpen}>
       <Segment size="massive" color="orange">
-        Meu Carrinho
+        <strong> Meu Carrinho</strong>
         <br />
         <p>
           <small>
             {haveProducts ? (
               <Fragment>
-                {`Quantidade: `}
+                {`Quantidade:  `}
                 <b>{products.length}</b>
+                <br />
+                {`Total:  `}
+                <b>
+                  {totalCartValue.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
+                </b>
               </Fragment>
             ) : (
               <Fragment>

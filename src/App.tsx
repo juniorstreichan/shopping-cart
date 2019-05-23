@@ -30,9 +30,21 @@ const App: React.FC = () => {
     dispatch({ type: TYPES.CART_ADD, product });
   }
 
+  function hasInTheCart(product: Product): boolean {
+    return state.products.filter(p => p.id === product.id).length > 0;
+  }
+
   return (
     <StyledApp>
-      <CartContext.Provider value={{ clearCart, products: state.products, removeItem, addItem }}>
+      <CartContext.Provider
+        value={{
+          clearCart,
+          products: state.products,
+          removeItem,
+          addItem,
+          hasInTheCart,
+        }}
+      >
         <Navbar />
         <Content>
           <Routes />

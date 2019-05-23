@@ -9,6 +9,9 @@ class ProductsService {
           id: product.ProductId,
           name: product.Name,
           imageUrl: product.ProductPicUrl,
+          price: product.Price,
+          description: product.Description,
+          category: product.Category,
         }));
         resolve(products);
       }, 2000);

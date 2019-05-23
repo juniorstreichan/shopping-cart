@@ -12,7 +12,7 @@ export function removeSelect(products: Product[], id = ''): Product[] {
 }
 
 export function addSelect(products: Product[], product?: Product): Product[] {
-  if (product) {
+  if (product && !products.find(p => p.id === product.id)) {
     CartStorage.addProductToCart(product);
     return [...products, product];
   }

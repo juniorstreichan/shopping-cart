@@ -1,14 +1,27 @@
 import React from 'react';
-import { Button, Card, Icon, Popup } from 'semantic-ui-react';
+import { Button, Card, Divider, Icon, Image, Label, Popup } from 'semantic-ui-react';
+import styled from 'styled-components';
 import Product from '../Product';
+
+const StyledCard = styled(Card)`
+  min-height: 400px;
+  :hover {
+    box-shadow: 1px 10px 10px 1px rgba(33, 33, 33, 0.5);
+  }
+`;
 
 const ProductCard: React.FC<{
   product: Product;
   onAddtoCart: Function;
   onViewCard: Function;
-}> = ({ product, onAddtoCart, onViewCard }) => {
+  hasInTheCart: boolean;
+}> = ({ product, onAddtoCart, onViewCard, hasInTheCart }) => {
   const btnAdd = (
-    <Button onClick={() => onAddtoCart(product)} color="blue">
+    <Button
+      onClick={() => onAddtoCart(product)}
+      disabled={hasInTheCart}
+      color={hasInTheCart ? 'green' : 'blue'}
+    >
       <Icon name="plus" />
       <Icon name="cart" />
     </Button>
@@ -18,20 +31,31 @@ const ProductCard: React.FC<{
       <Icon name="eye" size="large" />
     </Button>
   );
-  const bottomGroup = (
-    <Button.Group>
-      <Popup trigger={btnAdd} content="Adicionar ao carrinho" hideOnScroll />
-      <Popup trigger={btnView} content="Ver mais" hideOnScroll />
-    </Button.Group>
-  );
+
   return (
-    <Card
-      style={{ minHeight: '400px' }}
-      link
-      header={product.name}
-      image={product.imageUrl}
-      extra={bottomGroup}
-    />
+    <StyledCard fluid>
+      <Label attached="top left">{product.category}</Label>
+      <Image as="a" onClick={() => onViewCard()} ui={false} wrapped fluid src={product.imageUrl} />
+      <Card.Content>
+        <Card.Header>{product.name}</Card.Header>
+        <Divider hidden />
+        <Card.Meta>
+          <Label tag color="green" size="large">
+            {product.price &&
+              product.price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+          </Label>
+        </Card.Meta>
+      </Card.Content>
+      <Card.Content extra textAlign="center">
+        <Button.Group>
+          <Popup trigger={btnAdd} content="Adicionar ao carrinho" hideOnScroll />
+          <Popup trigger={btnView} content="Ver mais" hideOnScroll />
+        </Button.Group>
+      </Card.Content>
+    </StyledCard>
   );
 };
 
