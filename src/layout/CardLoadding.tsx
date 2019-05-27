@@ -9,13 +9,14 @@ const CardLoadding: React.FC<{ numOfCards?: number }> = ({ numOfCards = 3 }) => 
         <Grid.Column key={index + 1 * 9} mobile={16} tablet={8} computer={5}>
           <Segment raised>
             <Placeholder>
-              <Placeholder.Header image>
-                <Placeholder.Line />
+              <Placeholder.Image rectangular />
+              <Placeholder.Header>
                 <Placeholder.Line />
               </Placeholder.Header>
+
               <Placeholder.Paragraph>
-                <Placeholder.Line length="medium" />
-                <Placeholder.Line length="short" />
+                <Placeholder.Line />
+                <Placeholder.Line />
               </Placeholder.Paragraph>
             </Placeholder>
           </Segment>
