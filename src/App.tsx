@@ -14,6 +14,7 @@ import CartStorage from './service/CartStorage';
 const StyledApp = styled.div`
   margin-top: ${layoutConstants.NAVBAR_HEIGHT}px;
 `;
+
 const initialValues = {
   products: CartStorage.getProductsCart(),
 };

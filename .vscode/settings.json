@@ -1,6 +1,7 @@
 {
     "editor.formatOnSave": true,
     "prettier.eslintIntegration": true,
+    "prettier.singleQuote": true,
     "eslint.validate": [
         "javascript",
         "javascriptreact",
