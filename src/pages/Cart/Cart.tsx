@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import { RouteComponentProps } from 'react-router-dom';
-import { List } from 'semantic-ui-react';
 import ListProductsCart from './components/ListProductsCart';
 
 const Cart: React.FC<RouteComponentProps> = () => {
   return (
-    <List size="massive" divided verticalAlign="middle">
+    <Fragment>
+      <Helmet>
+        <title>Carrinho</title>
+      </Helmet>
       <ListProductsCart />
-    </List>
+    </Fragment>
   );
 };
 
