@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Image, Label, List, Popup, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
@@ -36,33 +36,37 @@ const PopoverCart: React.FC = () => {
     </Button>
   );
 
-  const ListProducts = products.map((product: Product, index: number) => (
-    <List.Item key={`${index}-PopoverCart-${product.id}`}>
-      <Image size="tiny" src={product.imageUrl} />
-      <List.Content floated="right">
-        <Label>
-          {product.price &&
-            product.price.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
-        </Label>
-      </List.Content>
-      <br />
-      <List.Content floated="right">
-        <Popup
-          hideOnScroll
-          position="left center"
-          on="click"
-          content={<ButtonRemoveItem onRemove={() => removeItem(product.id)} />}
-          trigger={<Button icon="trash" color="red" size="mini" />}
-        />
-      </List.Content>
-      <List.Content>
-        <small>{product.name}</small>
-      </List.Content>
-    </List.Item>
-  ));
+  const ListProducts = useMemo(() => {
+    console.log('ENTROU NO MEMO');
+
+    return products.map((product: Product, index: number) => (
+      <List.Item key={`${index}-PopoverCart-${product.id}`}>
+        <Image size="tiny" src={product.imageUrl} />
+        <List.Content floated="right">
+          <Label>
+            {product.price &&
+              product.price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+          </Label>
+        </List.Content>
+        <br />
+        <List.Content floated="right">
+          <Popup
+            hideOnScroll
+            position="left center"
+            on="click"
+            content={<ButtonRemoveItem onRemove={() => removeItem(product.id)} />}
+            trigger={<Button icon="trash" color="red" size="mini" />}
+          />
+        </List.Content>
+        <List.Content>
+          <small>{product.name}</small>
+        </List.Content>
+      </List.Item>
+    ));
+  }, [products, removeItem]);
 
   return (
     <Popup basic style={{ width: '400px' }} wide trigger={trigger} on="click" open={isOpen}>
