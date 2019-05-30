@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import './index.css';
+import * as sw from './serviceWorker';
 
 const Root: React.FC = () => (
   <BrowserRouter>
@@ -14,3 +15,5 @@ const Root: React.FC = () => (
 );
 
 ReactDOM.render(<Root />, document.getElementById('root'));
+
+sw.register();

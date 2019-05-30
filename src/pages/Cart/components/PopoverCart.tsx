@@ -1,8 +1,7 @@
-import React, { Fragment, useContext, useState, useMemo } from 'react';
+import React, { Fragment, useContext, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Image, Label, List, Popup, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
-import Product from '../../Products/Product';
 import CartContext from '../context/CartContext';
 import CartContextManager from '../context/CartContextManager';
 import ButtonRemoveItem from './ButtonRemoveItem';
@@ -39,7 +38,7 @@ const PopoverCart: React.FC = () => {
   const ListProducts = useMemo(() => {
     console.log('ENTROU NO MEMO');
 
-    return products.map((product: Product, index: number) => (
+    return products.map((product, index: number) => (
       <List.Item key={`${index}-PopoverCart-${product.id}`}>
         <Image size="tiny" src={product.imageUrl} />
         <List.Content floated="right">
