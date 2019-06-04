@@ -1,2 +1,1 @@
 (window.webpackJsonp=window.webpackJsonp||[]).push([[5],{436:function(e,t,a){"use strict";a.r(t);var n=a(0),l=a.n(n),r=a(35),o=a(337),c=a(330),u=a(101),i=function(){return l.a.createElement(o.a,{placeholder:!0},l.a.createElement(u.Helmet,null,l.a.createElement("title",null,"Bem vindo")),l.a.createElement(r.b,{to:"produtos"},l.a.createElement(c.a,{fluid:!0,size:"massive"},"Ver Produtos")))};t.default=i}}]);
-//# sourceMappingURL=5.fe285215.chunk.js.map
