@@ -35,7 +35,17 @@ const ProductCard: React.FC<{
   return (
     <StyledCard fluid>
       <Label attached="top left">{product.category}</Label>
-      <Image as="a" onClick={() => onViewCard()} ui={false} wrapped fluid src={product.imageUrl} />
+      {/* <Image
+        as="img"
+        onClick={() => onViewCard()}
+        ui={false}
+        wrapped
+        fluid
+        className="lazyload"
+        src={product.imageUrl}
+      /> */}
+
+      <img data-sizes="auto" data-src={product.imageUrl} className="lazyload" />
       <Card.Content>
         <Card.Header>{product.name}</Card.Header>
         <Divider hidden />

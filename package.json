@@ -9,6 +9,7 @@
     "@types/react": "16.8.17",
     "@types/react-dom": "16.8.4",
     "gh-pages": "^2.0.1",
+    "lazysizes": "^5.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
@@ -38,7 +39,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

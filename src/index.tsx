@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import './index.css';
 import * as sw from './serviceWorker';
+import 'lazysizes';
 
 const Root: React.FC = () => (
   <BrowserRouter>
